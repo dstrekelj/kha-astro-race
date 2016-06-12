@@ -24,7 +24,7 @@ class Ship extends Entity {
         if (Keyboard.get() != null) Keyboard.get().notify(onKeyDown, onKeyUp);
     }
     
-    public function update() : Void {
+    override public function update() : Void {
         y += dy * v;
         
         if ((dy == 1) && (y > (System.windowHeight() - height))) {
@@ -36,7 +36,7 @@ class Ship extends Entity {
         }
     }
     
-    public function draw(g : Graphics) : Void {
+    override public function draw(g : Graphics) : Void {
         // Head
         g.drawLine(x + 16, y, x, y + 16);
         g.drawLine(x, y + 16, x + 8, y + 16);

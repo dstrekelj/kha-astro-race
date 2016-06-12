@@ -1,5 +1,7 @@
 package game;
 
+import kha.graphics2.Graphics;
+
 class Object {
     public var x : Float;
     public var y : Float;
@@ -12,6 +14,10 @@ class Object {
         this.width = width;
         this.height = height;
     }
+    
+    public function update() : Void {}
+    
+    public function draw(g : Graphics) : Void {}
     
     public inline function positionCenter(x : Float, y : Float) : Void {
         this.x = x - width / 2;
