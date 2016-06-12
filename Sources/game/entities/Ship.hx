@@ -14,7 +14,7 @@ class Ship extends Entity {
     var player : Player;
     
     public function new(player : Player) {
-        super(0, 0, 32, 64);
+        super(0, 0, 32, 32);
         
         this.player = player;
         
@@ -38,27 +38,27 @@ class Ship extends Entity {
     
     override public function draw(g : Graphics) : Void {
         // Head
-        g.drawLine(x + 16, y, x, y + 16);
-        g.drawLine(x, y + 16, x + 8, y + 16);
-        g.drawLine(x + 16, y, x + 32, y + 16);
-        g.drawLine(x + 32, y + 16, x + 24, y + 16);
+        g.drawLine(x + 16, y, x + 4, y + 12);
+        g.drawLine(x + 4, y + 12, x + 8, y + 12);
+        g.drawLine(x + 16, y, x + 28, y + 12);
+        g.drawLine(x + 28, y + 12, x + 24, y + 12);
         // Body
-        g.drawLine(x + 8, y + 16, x + 8, y + 32);
-        g.drawLine(x + 24, y + 16, x + 24, y + 32);
+        g.drawLine(x + 8, y + 12, x + 8, y + 16);
+        g.drawLine(x + 24, y + 12, x + 24, y + 16);
         // Tail
-        g.drawLine(x + 8, y + 32, x, y + 58);
-        g.drawLine(x, y + 58, x + 4, y + 58);
-        g.drawLine(x + 24, y + 32, x + 32, y + 58);
-        g.drawLine(x + 32, y + 58, x + 28, y + 58);
-        g.drawLine(x + 12, y + 58, x + 20, y + 58);
+        g.drawLine(x + 8, y + 16, x, y + 28);
+        g.drawLine(x, y + 28, x + 4, y + 28);
+        g.drawLine(x + 24, y + 16, x + 32, y + 28);
+        g.drawLine(x + 32, y + 28, x + 28, y + 28);
+        g.drawLine(x + 12, y + 28, x + 20, y + 28);
         // Left thruster
-        g.drawLine(x + 4, y + 58, x + 4, y + 64);
-        g.drawLine(x + 4, y + 64, x + 12, y + 64);
-        g.drawLine(x + 12, y + 64, x + 12, y + 58);
+        g.drawLine(x + 4, y + 28, x + 4, y + 32);
+        g.drawLine(x + 4, y + 32, x + 12, y + 32);
+        g.drawLine(x + 12, y + 32, x + 12, y + 28);
         // Right thruster
-        g.drawLine(x + 28, y + 58, x + 28, y + 64);
-        g.drawLine(x + 28, y + 64, x + 20, y + 64);
-        g.drawLine(x + 20, y + 64, x + 20, y + 58);
+        g.drawLine(x + 28, y + 28, x + 28, y + 32);
+        g.drawLine(x + 28, y + 32, x + 20, y + 32);
+        g.drawLine(x + 20, y + 32, x + 20, y + 28);
     }
     
     private function onKeyDown(key : Key, char : String) : Void {

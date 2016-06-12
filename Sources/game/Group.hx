@@ -22,4 +22,8 @@ class Group<T : Object> {
     public inline function add(e : T) : Void {
         elements.push(e);
     }
+    
+    public inline function each(f : T->Void) {
+        for (e in elements) f(e);
+    }
 }

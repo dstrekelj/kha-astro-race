@@ -35,4 +35,8 @@ class Asteroid extends game.Entity {
         y = Default.GetFloatIn(0, System.windowHeight() - 128);
         dx = Default.GetIn(0, 1) == 0 ? 1 : -1;
     }
+    
+    public function checkCollision(s : Ship) : Bool {
+        return this.overlapsEntity(s);
+    }
 }

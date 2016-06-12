@@ -2,6 +2,7 @@ package;
 
 import game.*;
 import game.entities.*;
+import game.ui.*;
 
 import kha.Framebuffer;
 import kha.Scheduler;
@@ -14,6 +15,8 @@ class Project {
 	
 	var asteroids : Group<Asteroid>;
 	
+	var timer : Timer;
+	
 	public function new() {
 		System.notifyOnRender(render);
 		Scheduler.addTimeTask(update, 0, 1 / 60);
@@ -24,6 +27,12 @@ class Project {
 		shipR = new Ship(Player.PLAYER_2);
 		
 		asteroids = new Group<Asteroid>();
+		for (i in 0...64) {
+			var a = new Asteroid();
+			asteroids.add(a);
+		}
+		
+		timer = new Timer();
 		
 		init();
 	}
@@ -32,6 +41,16 @@ class Project {
 		shipL.update();
 		shipR.update();
 		asteroids.update();
+		timer.update();
+		
+		asteroids.each(function (a : Asteroid) {
+			if (a.checkCollision(shipL)) shipL.positionCenter(System.windowWidth() / 2 - 2 * shipL.width, System.windowHeight() - shipL.height);
+			if (a.checkCollision(shipR)) shipR.positionCenter(System.windowWidth() / 2 + 2 * shipR.width, System.windowHeight() - shipR.height);
+		});
+		
+		if (timer.y > System.windowHeight()) {
+			init();
+		}
 	}
 
 	function render(framebuffer: Framebuffer): Void {
@@ -42,6 +61,7 @@ class Project {
 		shipL.draw(g2);
 		shipR.draw(g2);
 		asteroids.draw(g2);
+		timer.draw(g2);
 		
 		g2.end();
 	}
@@ -49,11 +69,7 @@ class Project {
 	function init() : Void {
 		shipL.positionCenter(System.windowWidth() / 2 - 2 * shipL.width, System.windowHeight() - shipL.height);
 		shipR.positionCenter(System.windowWidth() / 2 + 2 * shipR.width, System.windowHeight() - shipR.height);
-		
-		for (i in 0...64) {
-			var a = new Asteroid();
-			a.init();
-			asteroids.add(a);
-		}
+		asteroids.each(function (a : Asteroid) { a.init(); });
+		timer.y = 0;
 	}
 }
