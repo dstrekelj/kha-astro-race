@@ -13,6 +13,8 @@ class Ship extends Entity {
     var v : Float;
     var player : Player;
     
+    public var score : Int;
+    
     public function new(player : Player) {
         super(0, 0, 32, 32);
         
@@ -20,6 +22,7 @@ class Ship extends Entity {
         
         dy = 0;
         v = 4;
+        score = 0;
         
         if (Keyboard.get() != null) Keyboard.get().notify(onKeyDown, onKeyUp);
     }
@@ -33,6 +36,7 @@ class Ship extends Entity {
         
         if (y < (0 - height)) {
             y = System.windowHeight();
+            score += 1;
         }
     }
     

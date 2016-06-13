@@ -9,7 +9,7 @@ class Timer extends game.Object {
     }
     
     override public function update() {
-        y += 0.5;
+        y += 0.2;
     }
     
     override public function draw(g : Graphics) {
